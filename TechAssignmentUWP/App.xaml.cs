@@ -46,7 +46,7 @@ namespace TechAssignmentUWP
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.DataGridPage), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(this, typeof(Views.ProductsPage), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()

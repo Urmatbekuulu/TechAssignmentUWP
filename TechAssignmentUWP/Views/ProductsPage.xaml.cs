@@ -13,6 +13,7 @@ namespace TechAssignmentUWP.Views
         public ProductsPage()
         {
             InitializeComponent();
+            DataContext = ViewModel;
         }
     }
 }

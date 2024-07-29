@@ -142,6 +142,8 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Converters\AddedToCartContentConverter.cs" />
+    <Compile Include="Converters\PriceConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -153,9 +155,6 @@
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DataGridPage.xaml.cs">
-      <DependentUpon>DataGridPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductsPage.xaml.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
@@ -192,10 +191,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CartPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DataGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -243,6 +238,7 @@
       <Name>TechAssignmentUWP.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
