@@ -43,7 +43,7 @@ namespace TechAssignmentUWP.Services
         {
             var cartFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(cartFileName, CreationCollisionOption.OpenIfExists);
             var cartFileText = await FileIO.ReadTextAsync(cartFile);
-            var cartList = await Json.ToObjectAsync<Dictionary<long, int>>(cartFileText);
+            var cartList = String.IsNullOrEmpty(cartFileText) ? new Dictionary<long,int>() : await Json.ToObjectAsync<Dictionary<long, int>>(cartFileText);
 
             var productsList = await GetProductsDataAsync();
             var result = new ObservableCollection<Product>();
