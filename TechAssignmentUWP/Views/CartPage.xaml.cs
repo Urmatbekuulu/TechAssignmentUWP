@@ -1,8 +1,7 @@
-﻿using System;
-
-using TechAssignmentUWP.ViewModels;
+﻿using TechAssignmentUWP.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace TechAssignmentUWP.Views
 {
@@ -13,6 +12,14 @@ namespace TechAssignmentUWP.Views
         public CartPage()
         {
             InitializeComponent();
+            DataContext = ViewModel;
+
+        }
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await ViewModel.LoadDataAsync();
+        
         }
     }
 }

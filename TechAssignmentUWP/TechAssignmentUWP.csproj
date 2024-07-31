@@ -148,9 +148,9 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
-    <Compile Include="ViewModels\DataGridViewModel.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\CartPage.xaml.cs">
@@ -223,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="Assets\products.json" />
     <None Include="README.md" />
     <None Include="TechAssignmentUWP_TemporaryKey.pfx" />
   </ItemGroup>

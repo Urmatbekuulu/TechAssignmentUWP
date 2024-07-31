@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using TechAssignmentUWP.Activation;
-
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace TechAssignmentUWP.Services
 {
+
     // For more information on understanding and extending activation flow see
     // https://github.com/microsoft/TemplateStudio/blob/main/docs/UWP/activation.md
     internal class ActivationService
@@ -18,6 +18,9 @@ namespace TechAssignmentUWP.Services
         private readonly App _app;
         private readonly Type _defaultNavItem;
         private Lazy<UIElement> _shell;
+        const string InitialdataFilename = "products.json";
+        const string LocalProductsFilename = "products.json";
+        const string LocalCartlistFilename = "stored_products.json";
 
         private object _lastActivationArgs;
 
@@ -83,8 +86,16 @@ namespace TechAssignmentUWP.Services
                     await defaultHandler.HandleAsync(activationArgs);
                 }
             }
+
+            await PrepareData();
         }
 
+        private async Task PrepareData()
+        {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            var file = await storageFolder.CreateFileAsync(LocalProductsFilename, CreationCollisionOption.OpenIfExists);
+
+        }
         private async Task StartupAsync()
         {
             await Task.CompletedTask;

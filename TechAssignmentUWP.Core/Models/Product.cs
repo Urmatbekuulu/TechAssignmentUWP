@@ -1,24 +1,23 @@
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.ComponentModel;
 
 namespace TechAssignmentUWP.Core.Models
 {
-    public class Product : INotifyPropertyChanged
+    public class Product : ObservableObject
     {
+
         public long Id { get; set; }
+
         public string Name { get; set; }
         public double Price { get; set; }
-        private bool addedToCart = false;
-        public bool AddedToCart { 
-            get => addedToCart; 
-            set 
-            { 
-                addedToCart = value; 
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Product.AddedToCart)));
-            } 
+        public bool isInCart;
+        public bool IsInCart { 
+            get => isInCart;
+            set => SetProperty(ref isInCart, value);
+
         }
         public string Image { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

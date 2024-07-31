@@ -1,8 +1,10 @@
 ﻿using System;
-
+using Windows.Storage;
 using TechAssignmentUWP.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using TechAssignmentUWP.Core.Helpers;
 
 namespace TechAssignmentUWP.Views
 {
@@ -14,6 +16,17 @@ namespace TechAssignmentUWP.Views
         {
             InitializeComponent();
             DataContext = ViewModel;
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await ViewModel.LoadDataAsync();
+        }
+
+        private void toggleButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            
         }
     }
 }

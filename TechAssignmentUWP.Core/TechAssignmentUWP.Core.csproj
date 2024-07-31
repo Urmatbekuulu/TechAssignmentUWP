@@ -6,6 +6,11 @@
   </PropertyGroup>
 
    <ItemGroup>
+     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
      <PackageReference Include="System.Text.Json" Version="8.0.4" />
+   </ItemGroup>
+
+   <ItemGroup>
+     <Folder Include="Services\" />
    </ItemGroup>
 </Project>
