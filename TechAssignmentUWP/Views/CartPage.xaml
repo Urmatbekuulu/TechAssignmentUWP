@@ -11,26 +11,44 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Total Price: " VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
-            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TotalPrice, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Grid.Column="2" Text="Total Quantity: " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
-            <TextBlock Grid.Column="3" Text="{x:Bind ViewModel.TotalQuantity, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock
+                Grid.Column="0"
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="Total Price: " />
+            <TextBlock
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="{x:Bind ViewModel.TotalPrice, Mode=OneWay}" />
+            <TextBlock
+                Grid.Column="2"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="Total Quantity: " />
+            <TextBlock
+                Grid.Column="3"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="{x:Bind ViewModel.TotalQuantity, Mode=OneWay}" />
         </Grid>
         <ListView
+            x:Name="itemListView"
             Grid.Row="1"
-    x:Name="itemListView"
-    Margin="20,0,0,60"
-    ItemsSource="{x:Bind ViewModel.Source}">
+            Margin="20,0,0,60"
+            ItemsSource="{x:Bind ViewModel.Source}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Margin="6">
@@ -39,27 +57,27 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border Width="110" Height="110">
-                            <Rectangle Stretch="UniformToFill"  Fill="LightGray" />
+                            <Rectangle Fill="LightGray" Stretch="UniformToFill" />
                         </Border>
                         <StackPanel
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    VerticalAlignment="Center"
-                    Orientation="Horizontal">
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
                             <TextBlock
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        Text="{Binding Key.Name}"
-                        TextWrapping="NoWrap" />
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Text="{Binding Key.Name}"
+                                TextWrapping="NoWrap" />
                             <TextBlock
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        Text="{Binding Key.Price}"
-                        TextWrapping="NoWrap" />
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Text="{Binding Key.Price}"
+                                TextWrapping="NoWrap" />
                             <Button
-                        x:Name="decrementButton"
-                        VerticalAlignment="Center"
-                        Content="-">
+                                x:Name="decrementButton"
+                                VerticalAlignment="Center"
+                                Content="-">
                                 <Interactivity:Interaction.Behaviors>
                                     <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=decrementButton}">
                                         <Core:InvokeCommandAction Command="{Binding Path=DataContext.DecrementCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
@@ -67,13 +85,13 @@
                                 </Interactivity:Interaction.Behaviors>
                             </Button>
                             <TextBlock
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        Text="{Binding Value}" />
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Text="{Binding Value}" />
                             <Button
-                        x:Name="incrementButton"
-                        VerticalAlignment="Center"
-                        Content="+">
+                                x:Name="incrementButton"
+                                VerticalAlignment="Center"
+                                Content="+">
                                 <Interactivity:Interaction.Behaviors>
                                     <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=incrementButton}">
                                         <Core:InvokeCommandAction Command="{Binding Path=DataContext.IncrementCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
@@ -81,10 +99,10 @@
                                 </Interactivity:Interaction.Behaviors>
                             </Button>
                             <Button
-                        x:Name="removeButton"
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        Content="Remove">
+                                x:Name="removeButton"
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Content="Remove">
                                 <Interactivity:Interaction.Behaviors>
                                     <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=removeButton}">
                                         <Core:InvokeCommandAction Command="{Binding Path=DataContext.RemoveCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
@@ -97,5 +115,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
-    
+
 </Page>
