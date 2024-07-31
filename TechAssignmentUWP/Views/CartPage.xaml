@@ -9,73 +9,93 @@
     xmlns:models="using:TechAssignmentUWP.Core.Models"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
-    <ListView
-        x:Name="itemListView"
-        Margin="120,0,0,60"
-        ItemsSource="{x:Bind ViewModel.Source}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <Grid Height="110" Margin="6">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Border Width="110" Height="110">
-                        <Image Stretch="UniformToFill" />
-                    </Border>
-                    <StackPanel
-                        Grid.Column="1"
-                        Margin="10,0,0,0"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Total Price: " VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+            <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.TotalPrice, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="2" Text="Total Quantity: " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+            <TextBlock Grid.Column="3" Text="{x:Bind ViewModel.TotalQuantity, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        </Grid>
+        <ListView
+            Grid.Row="1"
+    x:Name="itemListView"
+    Margin="20,0,0,60"
+    ItemsSource="{x:Bind ViewModel.Source}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="110" Margin="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Width="110" Height="110">
+                            <Rectangle Stretch="UniformToFill"  Fill="LightGray" />
+                        </Border>
+                        <StackPanel
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                            <TextBlock
+                        Margin="10"
                         VerticalAlignment="Center"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            Text="{Binding Key.Name}"
-                            TextWrapping="NoWrap" />
-                        <TextBlock
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            Text="{Binding Key.Price}"
-                            TextWrapping="NoWrap" />
-                        <Button
-                            x:Name="decrementButton"
-                            VerticalAlignment="Center"
-                            Content="-">
-                            <Interactivity:Interaction.Behaviors>
-                                <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=decrementButton}">
-                                    <Core:InvokeCommandAction Command="{Binding Path=DataContext.DecrementCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
-                                </Core:EventTriggerBehavior>
-                            </Interactivity:Interaction.Behaviors>
-                        </Button>
-                        <TextBlock
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            Text="{Binding Value}" />
-                        <Button
-                            x:Name="incrementButton"
-                            VerticalAlignment="Center"
-                            Content="+">
-                            <Interactivity:Interaction.Behaviors>
-                                <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=incrementButton}">
-                                    <Core:InvokeCommandAction Command="{Binding Path=DataContext.IncrementCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
-                                </Core:EventTriggerBehavior>
-                            </Interactivity:Interaction.Behaviors>
-                        </Button>
-                        <Button
-                            x:Name="removeButton"
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            Content="Remove">
-                            <Interactivity:Interaction.Behaviors>
-                                <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=removeButton}">
-                                    <Core:InvokeCommandAction Command="{Binding Path=DataContext.RemoveCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
-                                </Core:EventTriggerBehavior>
-                            </Interactivity:Interaction.Behaviors>
-                        </Button>
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                        Text="{Binding Key.Name}"
+                        TextWrapping="NoWrap" />
+                            <TextBlock
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        Text="{Binding Key.Price}"
+                        TextWrapping="NoWrap" />
+                            <Button
+                        x:Name="decrementButton"
+                        VerticalAlignment="Center"
+                        Content="-">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=decrementButton}">
+                                        <Core:InvokeCommandAction Command="{Binding Path=DataContext.DecrementCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </Button>
+                            <TextBlock
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        Text="{Binding Value}" />
+                            <Button
+                        x:Name="incrementButton"
+                        VerticalAlignment="Center"
+                        Content="+">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=incrementButton}">
+                                        <Core:InvokeCommandAction Command="{Binding Path=DataContext.IncrementCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </Button>
+                            <Button
+                        x:Name="removeButton"
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        Content="Remove">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="Click" SourceObject="{Binding ElementName=removeButton}">
+                                        <Core:InvokeCommandAction Command="{Binding Path=DataContext.RemoveCommand, ElementName=itemListView}" CommandParameter="{Binding Key.Id}" />
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+    
 </Page>

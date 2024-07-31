@@ -15,6 +15,16 @@ namespace TechAssignmentUWP.ViewModels
         public IAsyncRelayCommand IncrementCommand { get; }
         public IAsyncRelayCommand RemoveCommand { get; }
         public ObservableCollection<KeyValuePair<Product,int>> Source { get; } = new ObservableCollection<KeyValuePair<Product,int>>();
+        private double totalPrice = 0;
+        public double TotalPrice {
+            get => totalPrice;
+            set => SetProperty(ref totalPrice, value);
+        }
+        private int totalQuantity = 0;
+        public int TotalQuantity {
+            get => totalQuantity;
+            set => SetProperty(ref totalQuantity, value);
+        }
         public CartViewModel()
         {
             DecrementCommand = new AsyncRelayCommand<long>(async (productID) => await DecreaseAsync(productID));
@@ -39,11 +49,16 @@ namespace TechAssignmentUWP.ViewModels
         public async Task LoadDataAsync()
         {
             Source.Clear();
+            TotalPrice = 0;
+            TotalQuantity = 0;
             var productsCountDictionary = await DataService.GetProductsCountDictionaryInCart();
             foreach (var product in await DataService.GetCartProductsAsync())
             {
                 Source.Add(new KeyValuePair<Product,int>(product, productsCountDictionary[product.Id]));
+                TotalPrice += product.Price * productsCountDictionary[product.Id];
+                TotalQuantity += productsCountDictionary[product.Id];
             }
+           
         }
     }
 }
