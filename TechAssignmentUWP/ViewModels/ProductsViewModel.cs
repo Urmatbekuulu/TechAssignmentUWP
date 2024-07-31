@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using TechAssignmentUWP.Core.Models;
-using TechAssignmentUWP.Core.Services;
 using TechAssignmentUWP.Services;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
